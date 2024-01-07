@@ -1,4 +1,4 @@
-package com.example.trace_spring;
+package com.example.trace_spring.data;
 
 import lombok.Getter;
 
