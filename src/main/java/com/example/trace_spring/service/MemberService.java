@@ -1,6 +1,6 @@
 package com.example.trace_spring.service;
 
-import com.example.trace_spring.MemberDTO;
+import com.example.trace_spring.data.MemberDTO;
 import com.example.trace_spring.entity.Member;
 import com.example.trace_spring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +20,9 @@ public class MemberService {
         // 기타 필요한 로직 수행 가능
 
         return memberRepository.save(member);
+    }
+
+    public Member login(String email, String password) {
+        return memberRepository.findByEmailAndPassword(email, password);
     }
 }
