@@ -32,4 +32,8 @@ public class PostService {
     }
 
     // 기타 필요한 메소드 구현
+
+    public List<Post> findPostsInArea(double southWestLat, double southWestLng, double northEastLat, double northEastLng) {
+        return postRepository.findPostsInArea(southWestLat, southWestLng, northEastLat, northEastLng);
+    }
 }
