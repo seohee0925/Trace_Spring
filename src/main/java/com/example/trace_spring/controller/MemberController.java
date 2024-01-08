@@ -3,11 +3,14 @@ package com.example.trace_spring.controller;
 import com.example.trace_spring.data.MemberDTO;
 import com.example.trace_spring.entity.Member;
 import com.example.trace_spring.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/members")
@@ -28,12 +31,23 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Member> loginMember(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<Member> loginMember(@RequestParam String email, @RequestParam String password, HttpSession session) {
         Member loggedInMember = memberService.login(email, password);
         if (loggedInMember != null) {
+            session.setAttribute("userEmail", email);
             return ResponseEntity.ok(loggedInMember);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+    }
+
+    @GetMapping("/{memberEmail}")
+    public ResponseEntity<Member> getMemberByEmail(@PathVariable String memberEmail) {
+        Member member = memberService.getMemberByEmail(memberEmail);
+        if (member != null) {
+            return ResponseEntity.ok(member);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 }

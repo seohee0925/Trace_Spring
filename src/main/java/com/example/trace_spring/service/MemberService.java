@@ -6,6 +6,8 @@ import com.example.trace_spring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberService {
 
@@ -24,5 +26,13 @@ public class MemberService {
 
     public Member login(String email, String password) {
         return memberRepository.findByEmailAndPassword(email, password);
+    }
+
+    public List<Member> getAllMembers() {
+        return memberRepository.findAll();
+    }
+
+    public Member getMemberByEmail(String email) {
+        return memberRepository.findByEmail(email);
     }
 }
