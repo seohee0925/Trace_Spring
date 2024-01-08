@@ -25,4 +25,12 @@ public class Post {
     @Column(name="email")
     private String email;
 
+    @Lob
+    @Column(name="image", columnDefinition="TEXT")
+    private String image;  // Base64 인코딩된 이미지 데이터를 저장할 필드
+
+    @Lob
+    @Column(name="imageExtra", columnDefinition="TEXT")
+    private String imageExtra;  // Base64 인코딩된 이미지 데이터를 저장할 필드
+
 }
