@@ -25,4 +25,12 @@ public class MemberService {
     public Member login(String email, String password) {
         return memberRepository.findByEmailAndPassword(email, password);
     }
+
+    public void updateMember(Member member) {
+        memberRepository.save(member);
+    }
+
+    public Member getMemberByEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
 }

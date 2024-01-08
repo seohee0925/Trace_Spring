@@ -22,7 +22,7 @@ public class Post {
     @Column(name="longitude")
     private Double longitude;
 
-    @Column(name="email")
-    private String email;
-
+    @ManyToOne
+    @JoinColumn(name="user_email", referencedColumnName = "user_email")
+    private Member member;
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -22,4 +24,7 @@ public class Member {
 
     @Column(name="user_pw")
     private String password;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Post> postList;
 }

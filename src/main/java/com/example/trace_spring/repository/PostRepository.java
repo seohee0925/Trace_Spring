@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-    List<Post> findPostByEmail(String email);
+    List<Post> findByMember_Email(String email);
 
 //    // 위치 기반 검색을 위한 메소드 (예시)
 //    @Query("SELECT p FROM Post p WHERE ...") // 위치 검색을 위한 쿼리 구현
