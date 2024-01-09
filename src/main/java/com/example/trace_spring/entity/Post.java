@@ -3,6 +3,11 @@ package com.example.trace_spring.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -36,4 +41,13 @@ public class Post {
     @Column(name="address")
     private String address;  // 추가된 주소 필드
 
+    @CreationTimestamp
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name="created_date")
+    private Date createdDate; // 생성일 필드
+
+    // @UpdateTimestamp
+    // @Temporal(TemporalType.TIMESTAMP)
+    // @Column(name="modified_date")
+    // private Date modifiedDate;
 }
