@@ -33,4 +33,7 @@ public class Post {
     @Column(name="imageExtra", columnDefinition="TEXT")
     private String imageExtra;  // Base64 인코딩된 이미지 데이터를 저장할 필드
 
+    @Column(name="address")
+    private String address;  // 추가된 주소 필드
+
 }
