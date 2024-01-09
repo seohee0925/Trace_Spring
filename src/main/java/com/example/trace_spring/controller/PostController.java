@@ -1,5 +1,6 @@
 package com.example.trace_spring.controller;
 
+import com.example.trace_spring.entity.Member;
 import org.springframework.http.ResponseEntity;
 import com.example.trace_spring.entity.Post;
 import com.example.trace_spring.service.PostService;
@@ -26,6 +27,19 @@ public class PostController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/{memberEmail}")
+    public ResponseEntity<Object> getPostsByMemberEmail(@PathVariable String memberEmail) {
+        List<Post> posts = postService.findByEmail(memberEmail);
+
+        if(posts.isEmpty()) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "No posts found for the member with email: " + memberEmail);
+            return ResponseEntity.ok(response);
+        }
+
+        return ResponseEntity.ok(posts);
+    }
+
     @GetMapping("/inArea")
     public ResponseEntity<Object> getPostsInArea(
             @RequestParam double southWestLat,
@@ -37,5 +51,5 @@ public class PostController {
 
         return ResponseEntity.ok(posts);
     }
-    // 추가적인 컨트롤러 메소드 구현
+
 }
