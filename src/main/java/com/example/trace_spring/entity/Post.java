@@ -46,6 +46,9 @@ public class Post {
     @Column(name="created_date")
     private Date createdDate; // 생성일 필드
 
+//    @Column(name="created_date") // 더미 쌓을 때 필요
+//    private String createdDate;
+
     // @UpdateTimestamp
     // @Temporal(TemporalType.TIMESTAMP)
     // @Column(name="modified_date")
