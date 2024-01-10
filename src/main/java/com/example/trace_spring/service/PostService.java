@@ -36,4 +36,8 @@ public class PostService {
     public List<Post> findPostsInArea(double southWestLat, double southWestLng, double northEastLat, double northEastLng) {
         return postRepository.findPostsInArea(southWestLat, southWestLng, northEastLat, northEastLng);
     }
+
+    public Post getPostById(Long id) {
+        return postRepository.findById(id).orElse(null);
+    }
 }

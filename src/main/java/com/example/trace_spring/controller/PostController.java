@@ -81,4 +81,14 @@ public class PostController {
         return ResponseEntity.ok(posts);
     }
 
+    @GetMapping("/byId/{id}")
+    public ResponseEntity<Object> getPostById(@PathVariable Long id) {
+        Post post = postService.getPostById(id);
+        if(post != null) {
+            return ResponseEntity.ok(post);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

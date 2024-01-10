@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findPostByEmail(String email);
@@ -17,4 +18,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
                                @Param("southWestLng") double southWestLng,
                                @Param("northEastLat") double northEastLat,
                                @Param("northEastLng") double northEastLng);
+    Optional<Post> findById(Long id);
 }
