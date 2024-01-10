@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -26,12 +27,14 @@ public class PostService {
         return null;
     }
 
-    // 게시물 삭제 기능
-    public void deletePost(Long postId) {
-        postRepository.deleteById(postId);
+    public boolean deletePostById(Long id) {
+        Optional<Post> postOptional = postRepository.findById(id);
+        if (postOptional.isPresent()) {
+            postRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
-
-    // 기타 필요한 메소드 구현
 
     public List<Post> findPostsInArea(double southWestLat, double southWestLng, double northEastLat, double northEastLng) {
         return postRepository.findPostsInArea(southWestLat, southWestLng, northEastLat, northEastLng);

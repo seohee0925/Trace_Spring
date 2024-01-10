@@ -63,11 +63,20 @@ public class PostController {
 
             postsResponse.add(postMap);
         }
-
         return ResponseEntity.ok(postsResponse);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Object> deletePostById(@PathVariable Long id) {
+        boolean isDeleted = postService.deletePostById(id);
+        if(isDeleted) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Post with ID " + id + " has been deleted successfully");
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @GetMapping("/inArea")
     public ResponseEntity<Object> getPostsInArea(
