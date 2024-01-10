@@ -41,6 +41,12 @@ public class MemberController {
         }
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpSession session) {
+        session.removeAttribute("userEmail");
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/{memberEmail}")
     public ResponseEntity<Member> getMemberByEmail(@PathVariable String memberEmail) {
         Member member = memberService.getMemberByEmail(memberEmail);
